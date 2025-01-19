@@ -1,11 +1,14 @@
-# ecies-ed25519
-[![docs](https://docs.rs/ecies-ed25519/badge.svg)](https://docs.rs/ecies-ed25519)
-[![crates.io](https://meritbadge.herokuapp.com/ecies-ed25519)](https://crates.io/crates/ecies-ed25519)
-[![checks](https://github.com/phayes/ecies-ed25519/workflows/checks/badge.svg)](https://github.com/phayes/ecies-ed25519/actions)
-[![codecov](https://codecov.io/gh/phayes/ecies-ed25519/branch/master/graph/badge.svg)](https://codecov.io/gh/phayes/ecies-ed25519)
+# ecies-ed25519-silene
 
+[![docs](https://docs.rs/ecies-ed25519-silene/badge.svg)](https://docs.rs/ecies-ed25519)
 
-ECIES on Twisted Edwards Curve25519 using AES-GCM and HKDF-SHA256.
+**Notice (Silene-Edition):** The only change made is using SHA3-256 as opposed to SHA256 for the HKDF function.
+
+**Notice (Incompatiblility):** This is incompatabile with the ecies-ed25519 crate because it uses SHA3 instead.
+
+---
+
+ECIES on Twisted Edwards Curve25519 using AES-GCM and **HKDF-SHA3_256** (as opposed to SHA256 in ecies-ed25519).
 
 ECIES can be used to encrypt data using a public key such that it can only be decrypted by the holder of the corresponding private key. 
 

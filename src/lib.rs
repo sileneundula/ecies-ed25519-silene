@@ -4,9 +4,9 @@
 //! ECIES can be used to encrypt data using a public key such that it can only be decrypted
 //! by the holder of the corresponding private key. It is based on [curve25519-dalek](https://docs.rs/curve25519-dalek).
 //!
-//! There are two different backends for HKDF-SHA256 / AES-GCM operations:
+//! There are two different backends for HKDF-SHA3_384 / AES-GCM operations:
 //!
-//!   - The `pure_rust` backend (default). It uses a collection of pure-rust implementations of SHA2, HKDF, AES, and AEAD.
+//!   - The `pure_rust` backend (default). It uses a collection of pure-rust implementations of SHA3, HKDF, AES, and AEAD.
 //!
 //!   - The `ring` backend uses [ring](https://briansmith.org/rustdoc/ring/). It uses rock solid primitives based on BoringSSL,
 //!     but cannot run on all platforms. For example it won't work in web assembly. To enable it add the following to your Cargo.toml:
@@ -128,7 +128,7 @@ fn encapsulate(emphemeral_sk: &SecretKey, peer_pk: &PublicKey) -> AesKey {
     master[..32].clone_from_slice(emphemeral_pk.0.as_bytes());
     master[32..].clone_from_slice(&shared_point);
 
-    hkdf_sha256(&master)
+    hkdf_sha3(&master)
 }
 
 fn decapsulate(sk: &SecretKey, emphemeral_pk: &PublicKey) -> AesKey {
@@ -138,7 +138,7 @@ fn decapsulate(sk: &SecretKey, emphemeral_pk: &PublicKey) -> AesKey {
     master[..32].clone_from_slice(emphemeral_pk.0.as_bytes());
     master[32..].clone_from_slice(&shared_point);
 
-    hkdf_sha256(&master)
+    hkdf_sha3(&master)
 }
 
 /// Error types
@@ -251,7 +251,7 @@ pub mod tests {
             204, 68, 78, 7, 8, 70, 53, 136, 56, 115, 129, 183, 226, 82, 147, 253, 62, 59, 170, 188,
             131, 119, 31, 21, 249, 255, 19, 103, 230, 24, 213, 204,
         ];
-        let key = hkdf_sha256(b"ABC123");
+        let key = hkdf_sha3(b"ABC123");
 
         assert_eq!(key.to_vec(), known_key);
     }

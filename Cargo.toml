@@ -1,13 +1,13 @@
 [package]
-name = "ecies-ed25519"
-version = "0.5.1"
-authors = ["phayes <patrick.d.hayes@gmail.com>"]
+name = "ecies-ed25519-silene"
+version = "0.1.0"
+authors = ["phayes <patrick.d.hayes@gmail.com>, silene0259"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
-description = "ECIES on Twisted Edwards Curve25519 using AES-GCM and HKDF-SHA256"
+description = "ECIES on Twisted Edwards Curve25519 using AES-GCM and HKDF-SHA3_384"
 categories = ["cryptography"]
 keywords = ["ecies", "encryption", "ed25519", "curve25519", "aes-gcm"]
-repository = "https://github.com/phayes/ecies-ed25519"
+repository = "https://github.com/sileneundula/ecies-ed25519-silene"
 readme = "README.md"
 
 [dependencies]
@@ -23,12 +23,13 @@ ring = { version = "0.17.8", optional = true, features = [] }
 # "pure_rust" feature
 aes-gcm = { version = "0.10.3", optional = true }
 sha2 = { version = "0.10.8", optional = true }
+sha3 = {version = "0.10.8", optional = true }
 digest = { version = "0.10.7", optional = true }
 hkdf = { version = "0.12.4", optional = true }
 
 [features]
 default = ["pure_rust"]
-pure_rust = ["aes-gcm", "sha2", "digest", "hkdf"]
+pure_rust = ["aes-gcm", "sha2", "digest", "hkdf", "sha3"]
 
 [dev-dependencies]
 serde_json = "1.0.128"

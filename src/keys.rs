@@ -1,11 +1,22 @@
+// Edited by silene0259 to change HKDF from SHA256 to SHA3_384.
+
 use super::Error;
 use core::iter::FromIterator;
+
+// Curve25519
 use curve25519_dalek::constants;
 use curve25519_dalek::edwards::{CompressedEdwardsY, EdwardsPoint};
 use curve25519_dalek::scalar::Scalar;
+
+// Hexadecimal
 use hex::{FromHex, ToHex};
+
+// Random
 use rand::{CryptoRng, RngCore};
+
+// Zeroize
 use zeroize::Zeroize;
+use zeroize::ZeroizeOnDrop;
 
 /// The length of a `SecretKey`, in bytes.
 pub const SECRET_KEY_LENGTH: usize = 32;
@@ -175,6 +186,8 @@ impl AsRef<[u8]> for PublicKey {
         self.as_bytes()
     }
 }
+
+
 
 // "serde" feature
 // ---------------
