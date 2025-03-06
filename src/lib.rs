@@ -36,6 +36,7 @@ use curve25519_dalek::scalar::Scalar;
 use rand::{CryptoRng, RngCore};
 
 mod keys;
+pub mod ml_kem;
 pub use keys::*;
 
 #[cfg(feature = "ring")]
